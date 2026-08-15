@@ -16,7 +16,7 @@ output "ssmcontacts_contact_channels_contact_id" {
 }
 output "ssmcontacts_contact_channels_delivery_address" {
   description = "Map of delivery_address values across all ssmcontacts_contact_channels, keyed the same as var.ssmcontacts_contact_channels"
-  value       = { for k, v in aws_ssmcontacts_contact_channel.ssmcontacts_contact_channels : k => v.delivery_address if v.delivery_address != null && length(v.delivery_address) > 0 }
+  value       = { for k, v in aws_ssmcontacts_contact_channel.ssmcontacts_contact_channels : k => one(v.delivery_address) if v.delivery_address != null && length(v.delivery_address) > 0 }
 }
 output "ssmcontacts_contact_channels_name" {
   description = "Map of name values across all ssmcontacts_contact_channels, keyed the same as var.ssmcontacts_contact_channels"
